@@ -9,6 +9,11 @@ workspace "Athena"
 
 OutputDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.archetecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "vendor/GLFW/include"
+
+include "vendor/GLFW"
+
 project "Athena"
 	location "Athena"
 	kind "SharedLib"
@@ -29,9 +34,9 @@ project "Athena"
 
 	includedirs
 	{
+		"Athena/src",
 		"vendor/spdlog/include",
-		"vendor/glfw/include",
-		"Athena/src"
+		"%{IncludeDir.GLFW}"
 	}
 
 	libdirs
@@ -41,7 +46,8 @@ project "Athena"
 
 	links
 	{
-		"glfw3.lib",
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"

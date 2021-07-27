@@ -3,9 +3,9 @@
 //	USED BY APPLICATIONS
 
 #include <stdio.h>
-#include "App.h"
-#include "Log.h"
+#include <Athena/App.h>
+#include <Athena/Log.h>
 
 //	======ENGINE ENTRY POINT======
 
-#include "AthenaEntry.h"
+#include <Athena/AthenaEntry.h>
