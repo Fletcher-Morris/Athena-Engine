@@ -17,6 +17,9 @@ project "Athena"
 	targetdir ("bin/" .. OutputDir .. "%{prj.name}")
 	objdir ("bin-int/" .. OutputDir .. "%{prj.name}")
 
+	pchheader "AthenaPCH.h"
+	pchsource "Athena/src/Athena/AthenaPCH.h"
+
 	files
 	{
 		"%{prj.name}/src/**.h",
@@ -32,7 +35,8 @@ project "Athena"
 
 	libdirs
 	{
-		"vendor/glfw/lib"
+		"vendor/glfw/lib",
+		"Athena/src"
 	}
 
 	links

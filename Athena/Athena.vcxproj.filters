@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Athena">
+      <UniqueIdentifier>{B633ECA7-A2D5-167E-8B90-2AD277D19DCE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Athena\App.h">
+      <Filter>Athena</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Athena\Athena.h">
+      <Filter>Athena</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Athena\AthenaCore.h">
+      <Filter>Athena</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Athena\AthenaEntry.h">
+      <Filter>Athena</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Athena\Log.h">
+      <Filter>Athena</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AthenaPCH.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Athena\App.cpp">
+      <Filter>Athena</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Athena\Log.cpp">
+      <Filter>Athena</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AthenaPCH.cpp" />
+  </ItemGroup>
+</Project>
