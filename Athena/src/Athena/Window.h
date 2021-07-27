@@ -1,18 +1,16 @@
 #pragma once
 
-#include "AthenaPCH.h"
-
 #include "AthenaCore.h"
 
 namespace Athena
 {
 	struct WindowProperties
 	{
-		std::string WindowName;
+		std::string WindowTitle;
 		unsigned int WindowWidth;
 		unsigned int WindowHeight;
 
-		WindowProperties(const std::string& name = "Athena Engine", unsigned int width = 1600, unsigned int height = 900) : WindowName(name), WindowWidth(width), WindowHeight(height)
+		WindowProperties(const std::string& name = "Athena Engine", unsigned int width = 1600, unsigned int height = 900) : WindowTitle(name), WindowWidth(width), WindowHeight(height)
 		{
 
 		}

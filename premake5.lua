@@ -17,8 +17,8 @@ project "Athena"
 	targetdir ("bin/" .. OutputDir .. "%{prj.name}")
 	objdir ("bin-int/" .. OutputDir .. "%{prj.name}")
 
-	pchheader "AthenaPCH.h"
-	pchsource "Athena/src/Athena/AthenaPCH.h"
+	pchheader "pch.h"
+	pchsource "Athena/src/pch.cpp"
 
 	files
 	{
@@ -30,13 +30,13 @@ project "Athena"
 	includedirs
 	{
 		"vendor/spdlog/include",
-		"vendor/glfw/include"
+		"vendor/glfw/include",
+		"Athena/src"
 	}
 
 	libdirs
 	{
-		"vendor/glfw/lib",
-		"Athena/src"
+		"vendor/glfw/lib"
 	}
 
 	links

@@ -4,12 +4,16 @@
     <Filter Include="Athena">
       <UniqueIdentifier>{B633ECA7-A2D5-167E-8B90-2AD277D19DCE}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Athena.h" />
     <ClInclude Include="src\Athena\App.h">
-      <Filter>Athena</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Athena\Athena.h">
       <Filter>Athena</Filter>
     </ClInclude>
     <ClInclude Include="src\Athena\AthenaCore.h">
@@ -21,7 +25,13 @@
     <ClInclude Include="src\Athena\Log.h">
       <Filter>Athena</Filter>
     </ClInclude>
-    <ClInclude Include="src\AthenaPCH.h" />
+    <ClInclude Include="src\Athena\Window.h">
+      <Filter>Athena</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Athena\App.cpp">
@@ -30,6 +40,9 @@
     <ClCompile Include="src\Athena\Log.cpp">
       <Filter>Athena</Filter>
     </ClCompile>
-    <ClCompile Include="src\AthenaPCH.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pch.cpp" />
   </ItemGroup>
 </Project>
