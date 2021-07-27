@@ -50,7 +50,7 @@ project "Athena"
 
 		postbuildcommands
 		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. OutputDir .. "/Forge")
+			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. OutputDir .. "Forge")
 		}
 
 	filter "configurations:Debug"

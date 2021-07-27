@@ -91,6 +91,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Forge.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Athena\Athena.vcxproj">
       <Project>{B633ECA7-A2D5-167E-8B90-2AD277D19DCE}</Project>
     </ProjectReference>
