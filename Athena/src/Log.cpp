@@ -10,10 +10,10 @@ namespace Athena
 	{
 		spdlog::set_pattern("%^[%T] %n: %v%$");
 
-		s_MainLogger = spdlog::stderr_color_mt("Vulkanite");
+		s_MainLogger = spdlog::stderr_color_mt("AthenaEngine");
 		s_MainLogger->set_level(spdlog::level::trace);
 
-		s_MainLogger = spdlog::stderr_color_mt("Application");
-		s_MainLogger->set_level(spdlog::level::trace);
+		s_ClientLogger = spdlog::stderr_color_mt("Application");
+		s_ClientLogger->set_level(spdlog::level::trace);
 	}
 }
