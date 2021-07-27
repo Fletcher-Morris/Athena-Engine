@@ -26,15 +26,18 @@ project "Athena"
 
 	includedirs
 	{
-		"vendor/spdlog/include"
+		"vendor/spdlog/include",
+		"vendor/glfw/include"
 	}
 
 	libdirs
 	{
+		"vendor/glfw/lib"
 	}
 
 	links
 	{
+		"glfw3.lib",
 	}
 
 	filter "system:windows"
@@ -83,6 +86,7 @@ project "Forge"
 	includedirs
 	{
 		"vendor/spdlog/include",
+		"vendor/glfw/include",
 		"Athena/src"
 	}
 
