@@ -2,7 +2,6 @@
 
 //	USED BY APPLICATIONS
 
-#include <stdio.h>
 #include <Athena/App.h>
 #include <Athena/Log.h>
 

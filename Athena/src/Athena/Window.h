@@ -1,7 +1,5 @@
 #pragma once
 
-#include "AthenaCore.h"
-
 namespace Athena
 {
 	struct WindowProperties

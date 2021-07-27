@@ -1,6 +1,7 @@
 #pragma once
 
 #include <algorithm>
+#include <array>
 #include <functional>
 #include <iostream>
 #include <memory>
@@ -10,6 +11,8 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
+
+#include "Athena/Log.h"
 
 #ifdef ATH_PLAT_WIN
 #include <Windows.h>

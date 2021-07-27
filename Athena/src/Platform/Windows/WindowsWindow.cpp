@@ -2,8 +2,6 @@
 
 #include "WindowsWindow.h"
 
-#include <Athena/Log.h>
-
 void Athena::WindowsWindow::Init(const WindowProperties& properties)
 {
 	m_glfwWindowData.Title = properties.WindowTitle;
