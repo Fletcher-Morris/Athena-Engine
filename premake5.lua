@@ -26,7 +26,7 @@ project "Athena"
 
 	includedirs
 	{
-		"%{prj.name}/vendor/spdlog/include"
+		"vendor/spdlog/include"
 	}
 
 	libdirs
@@ -64,7 +64,7 @@ project "Athena"
 
 
 
-		
+
 project "Forge"
 	location "Forge"
 	kind "ConsoleApp"
@@ -82,7 +82,7 @@ project "Forge"
 
 	includedirs
 	{
-		"Athena/vendor/spdlog/include",
+		"vendor/spdlog/include",
 		"Athena/src"
 	}
 
