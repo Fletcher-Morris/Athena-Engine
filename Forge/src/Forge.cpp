@@ -1,4 +1,4 @@
-#include <Athena.h>
+#include <Athena/Athena.h>
 
 class Forge : public Athena::App
 {

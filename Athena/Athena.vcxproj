@@ -103,15 +103,15 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\App.h" />
-    <ClInclude Include="src\Athena.h" />
-    <ClInclude Include="src\AthenaCore.h" />
-    <ClInclude Include="src\AthenaEntry.h" />
-    <ClInclude Include="src\Log.h" />
+    <ClInclude Include="src\Athena\App.h" />
+    <ClInclude Include="src\Athena\Athena.h" />
+    <ClInclude Include="src\Athena\AthenaCore.h" />
+    <ClInclude Include="src\Athena\AthenaEntry.h" />
+    <ClInclude Include="src\Athena\Log.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\App.cpp" />
-    <ClCompile Include="src\Log.cpp" />
+    <ClCompile Include="src\Athena\App.cpp" />
+    <ClCompile Include="src\Athena\Log.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
