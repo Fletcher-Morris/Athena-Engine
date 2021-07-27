@@ -3,17 +3,17 @@
 
 namespace Athena
 {
-	std::shared_ptr<spdlog::logger> Log::s_MainLogger;
-	std::shared_ptr<spdlog::logger> Log::s_ClientLogger;
+	std::shared_ptr<spdlog::logger> Log::s_EngineLogger;
+	std::shared_ptr<spdlog::logger> Log::s_AppLogger;
 
 	void Log::Init()
 	{
 		spdlog::set_pattern("%^[%T] %n: %v%$");
 
-		s_MainLogger = spdlog::stderr_color_mt("AthenaEngine");
-		s_MainLogger->set_level(spdlog::level::trace);
+		s_EngineLogger = spdlog::stderr_color_mt("Engine");
+		s_EngineLogger->set_level(spdlog::level::trace);
 
-		s_ClientLogger = spdlog::stderr_color_mt("Application");
-		s_ClientLogger->set_level(spdlog::level::trace);
+		s_AppLogger = spdlog::stderr_color_mt("App");
+		s_AppLogger->set_level(spdlog::level::trace);
 	}
 }
