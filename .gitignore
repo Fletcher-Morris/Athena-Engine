@@ -349,3 +349,5 @@ healthchecksdb
 MigrationBackup/
 
 bin-int/
+
+vendor/GLFW
