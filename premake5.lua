@@ -68,10 +68,12 @@ project "Athena"
 
 	filter "configurations:Debug"
 		defines "ATH_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "ATH_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 
@@ -117,8 +119,10 @@ project "Forge"
 
 	filter "configurations:Debug"
 		defines "ATH_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "ATH_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
