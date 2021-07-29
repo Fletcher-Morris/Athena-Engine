@@ -1,5 +1,9 @@
 #pragma once
 
+#include "pch.h"
+
+#include "Athena/AthenaCore.h"
+
 namespace Athena
 {
 	struct WindowProperties
@@ -21,5 +25,8 @@ namespace Athena
 		virtual unsigned int GetWidth() const = 0;
 		virtual unsigned int GetHeight() const = 0;
 		static Window* Create(const WindowProperties& properties = WindowProperties());
+
+		virtual void OnUpdate() = 0;
+
 	};
 }

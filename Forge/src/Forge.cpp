@@ -2,7 +2,10 @@
 
 class Forge : public Athena::App
 {
-
+public:
+	Forge()
+	{
+	}
 };
 
 Athena::App* Athena::CreateApp()
