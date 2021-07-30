@@ -3,6 +3,9 @@
 #include "AthenaCore.h"
 #include "Window.h"
 
+#include <vulkan/vulkan.h>
+#define GLFW_INCLDUE_VULKAN
+
 namespace Athena
 {
 	class ATH_API App
@@ -14,7 +17,10 @@ namespace Athena
 	private:
 		std::unique_ptr<Window> m_appWindow;
 		bool m_isRunning = true;
+		VkInstance m_vulkanInstance;
+		bool CreateVulkanInstance();
 	};
 
 	App* CreateApp();
+
 }

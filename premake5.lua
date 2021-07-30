@@ -10,8 +10,8 @@ workspace "Athena"
 OutputDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.archetecture}"
 
 IncludeDir = {}
-IncludeDir["GLFW"] = "vendor/GLFW/include"
-IncludeDir["vulkan"] = "vendor/vulkan/include"
+IncludeDir["GLFW"] = "vendor/GLFW"
+IncludeDir["vulkan"] = "vendor/vulkan"
 
 include "vendor/GLFW"
 
@@ -37,16 +37,18 @@ project "Athena"
 	{
 		"Athena/src",
 		"vendor/spdlog/include",
-		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.vulkan}"
+		"%{IncludeDir.GLFW}/include",
+		"%{IncludeDir.vulkan}/include"
 	}
 
 	libdirs
 	{
+		"%{IncludeDir.vulkan}/lib"
 	}
 
 	links
 	{
+		"vulkan-1.lib",
 		"GLFW",
 		"opengl32.lib"
 	}
@@ -100,8 +102,8 @@ project "Forge"
 	{
 		"Athena/src",
 		"vendor/spdlog/include",
-		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.vulkan}"
+		"%{IncludeDir.GLFW}/include",
+		"%{IncludeDir.vulkan}/include"
 	}
 
 	links

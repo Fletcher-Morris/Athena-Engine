@@ -21,24 +21,8 @@ namespace Athena
 		bool vulkanSupported = glfwVulkanSupported();
 		ATH_ENGINE_ASSERT(vulkanSupported, "Vulkan is not supported on this system!");
 
-		//	Create Vulkan Instance
-		PFN_vkCreateInstance pfnCreateInstance = (PFN_vkCreateInstance)glfwGetInstanceProcAddress(NULL, "vkCreateInstance");
-		uint32_t extensionsCount;
-		const char** extensions = glfwGetRequiredInstanceExtensions(&extensionsCount);
-		VkInstanceCreateInfo ici;
-		memset(&ici, 0, sizeof(ici));
-		ici.enabledExtensionCount = extensionsCount;
-		ici.ppEnabledExtensionNames = extensions;
-
 		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 		m_glfwWindow = glfwCreateWindow(m_glfwWindowData.Width, m_glfwWindowData.Height, m_glfwWindowData.Title.c_str(), NULL, NULL);
-
-		/*VkSurfaceKHR vkSurface;
-		VkResult err = glfwCreateWindowSurface(instance, m_glfwWindow, NULL, &vkSurface);
-		if (err)
-		{
-			ATH_ENGINE_ERROR("Failed to create vulkan window surface!");
-		}*/
 	}
 
 	WindowsWindow::WindowsWindow(const WindowProperties& properties)
@@ -49,6 +33,7 @@ namespace Athena
 	WindowsWindow::~WindowsWindow()
 	{
 		glfwDestroyWindow(m_glfwWindow);
+		glfwTerminate();
 	}
 
 	unsigned int Athena::WindowsWindow::GetWidth() const
@@ -64,5 +49,4 @@ namespace Athena
 	void Athena::WindowsWindow::OnUpdate()
 	{
 	}
-
 }
