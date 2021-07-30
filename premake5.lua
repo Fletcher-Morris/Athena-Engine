@@ -70,7 +70,11 @@ project "Athena"
 		}
 
 	filter "configurations:Debug"
-		defines "ATH_DEBUG"
+		defines
+		{
+			"ATH_DEBUG",
+			"ATH_ENABLE_ASSERTS"
+		}
 		buildoptions "/MDd"
 		symbols "On"
 
@@ -122,7 +126,11 @@ project "Forge"
 		}
 
 	filter "configurations:Debug"
-		defines "ATH_DEBUG"
+		defines
+		{
+			"ATH_DEBUG",
+			"ATH_ENABLE_ASSERTS"
+		}
 		buildoptions "/MDd"
 		symbols "On"
 

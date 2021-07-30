@@ -17,10 +17,6 @@ namespace Athena
 
 		ATH_ENGINE_INFO("Creating GLFW window '{0}' ({1} X {2})", properties.WindowTitle, properties.WindowWidth, properties.WindowHeight);
 
-		ATH_ENGINE_INFO("Initialising Vulkan");
-		bool vulkanSupported = glfwVulkanSupported();
-		ATH_ENGINE_ASSERT(vulkanSupported, "Vulkan is not supported on this system!");
-
 		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 		m_glfwWindow = glfwCreateWindow(m_glfwWindowData.Width, m_glfwWindowData.Height, m_glfwWindowData.Title.c_str(), NULL, NULL);
 	}

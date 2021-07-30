@@ -8,8 +8,9 @@ namespace Athena
 {
 	Athena::App::App()
 	{
-		//s_instance = this;
 		m_appWindow = std::unique_ptr<Window>(Window::Create());
+		CreateVulkanInstance();
+		ATH_ENGINE_INFO("Created Vulkan instance!");
 	}
 
 	Athena::App::~App()
@@ -27,6 +28,8 @@ namespace Athena
 
 	bool App::CreateVulkanInstance()
 	{
+		ATH_ENGINE_INFO("Initialising Vulkan");
+
 		VkApplicationInfo appInfo{};
 		appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
 		appInfo.pApplicationName = "Athena Engine";
@@ -50,6 +53,45 @@ namespace Athena
 		VkResult result = vkCreateInstance(&createInfo, nullptr, &m_vulkanInstance);
 		bool success = result == VK_SUCCESS;
 		ATH_ENGINE_ASSERT(success, "Failed to create Vulkan instance!");
+
+		uint32_t vkExtensionCount = 0;
+		vkEnumerateInstanceExtensionProperties(nullptr, &vkExtensionCount, nullptr);
+		std::vector<VkExtensionProperties> extensions(vkExtensionCount);
+		vkEnumerateInstanceExtensionProperties(nullptr, &vkExtensionCount, extensions.data());
+		std::string vkExtensionsString = "Vulkan extensions: ";
+		for (const auto& extension : extensions)
+		{
+			vkExtensionsString += extension.extensionName;
+			vkExtensionsString += ", ";
+		}
+		ATH_ENGINE_INFO(vkExtensionsString);
+
 		return success;
+	}
+	bool App::SelectVulkanDevice()
+	{
+		m_vulkanDevice = VK_NULL_HANDLE;
+		uint32_t vkDeviceCount = 0;
+		vkEnumeratePhysicalDevices(m_vulkanInstance, &vkDeviceCount, nullptr);
+		ATH_ENGINE_ASSERT(vkDeviceCount == 0, "Failed to find GPU with Vulkan support!");
+
+		std::vector<VkPhysicalDevice> foundVkDevices(vkDeviceCount);
+		for (const auto& device : foundVkDevices)
+		{
+			if (IsVulkanDeviceSuitable(device))
+			{
+				m_vulkanDevice = device;
+				break;
+			}
+		}
+		bool gpuSuitable = m_vulkanDevice == VK_NULL_HANDLE;
+		ATH_ENGINE_ASSERT(gpuSuitable, "Failed to find a suitable GPU!");
+		if (gpuSuitable == false) return false;
+
+		return false;
+	}
+	bool App::IsVulkanDeviceSuitable(VkPhysicalDevice device)
+	{
+		return true;
 	}
 }
