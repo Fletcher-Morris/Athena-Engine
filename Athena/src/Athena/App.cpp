@@ -9,6 +9,7 @@ namespace Athena
 	Athena::App::App()
 	{
 		m_appWindow = std::unique_ptr<Window>(Window::Create());
+		//return;
 		CreateVulkanInstance();
 		ATH_ENGINE_INFO("Created Vulkan instance!");
 		SelectVulkanDevice();
@@ -23,6 +24,8 @@ namespace Athena
 	{
 		while (m_isRunning)
 		{
+			glfwPollEvents();
+
 			m_appWindow->OnUpdate();
 		}
 	}

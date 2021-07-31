@@ -11,6 +11,8 @@ namespace Athena
 
 	void Athena::WindowsWindow::Init(const WindowProperties& properties)
 	{
+		glfwInit();
+
 		m_glfwWindowData.Title = properties.WindowTitle;
 		m_glfwWindowData.Width = properties.WindowWidth;
 		m_glfwWindowData.Height = properties.WindowHeight;
