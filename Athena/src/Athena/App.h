@@ -4,7 +4,6 @@
 #include "Window.h"
 
 #include <vulkan/vulkan.h>
-#define GLFW_INCLDUE_VULKAN
 
 namespace Athena
 {

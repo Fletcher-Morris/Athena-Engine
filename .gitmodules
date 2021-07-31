@@ -4,6 +4,3 @@
 [submodule "vendor/GLFW"]
 	path = vendor/GLFW
 	url = https://github.com/glfw/glfw.git
-[submodule "vendor/vulkan"]
-	path = vendor/vulkan
-	url = https://github.com/KhronosGroup/Vulkan-Headers.git

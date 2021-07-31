@@ -2,6 +2,7 @@
 #include "App.h"
 
 #include "Athena/Log.h"
+#define GLW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
 namespace Athena
