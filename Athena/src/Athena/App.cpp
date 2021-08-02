@@ -78,9 +78,11 @@ namespace Athena
 		m_vulkanDevice = VK_NULL_HANDLE;
 		uint32_t vkDeviceCount = 0;
 		VkResult enumerateDevicesResult = vkEnumeratePhysicalDevices(m_vulkanInstance, &vkDeviceCount, nullptr);
-		ATH_ENGINE_ASSERT(vkDeviceCount == 0, "Failed to find GPU with Vulkan support!");
+		ATH_ENGINE_ASSERT(vkDeviceCount != 0, "Failed to find GPU with Vulkan support!");
 
 		std::vector<VkPhysicalDevice> foundVkDevices(vkDeviceCount);
+		vkEnumeratePhysicalDevices(m_vulkanInstance, &vkDeviceCount, foundVkDevices.data());
+
 		for (const auto& device : foundVkDevices)
 		{
 			if (IsVulkanDeviceSuitable(device))
@@ -89,9 +91,12 @@ namespace Athena
 				break;
 			}
 		}
-		bool gpuSuitable = m_vulkanDevice == VK_NULL_HANDLE;
+		bool gpuSuitable = m_vulkanDevice != VK_NULL_HANDLE;
 		ATH_ENGINE_ASSERT(gpuSuitable, "Failed to find a suitable GPU!");
 		if (gpuSuitable == false) return false;
+
+		vkGetPhysicalDeviceProperties(m_vulkanDevice, &m_vulkanDeviceProperties);
+		ATH_ENGINE_INFO("Selected GPU '{0}'", m_vulkanDeviceProperties.deviceName);
 
 		return true;
 	}

@@ -21,6 +21,7 @@ namespace Athena
 		VkInstance m_vulkanInstance;
 		bool CreateVulkanInstance();
 		VkPhysicalDevice m_vulkanDevice;
+		VkPhysicalDeviceProperties m_vulkanDeviceProperties;
 		bool SelectVulkanDevice();
 		bool IsVulkanDeviceSuitable(VkPhysicalDevice device);
 	};
