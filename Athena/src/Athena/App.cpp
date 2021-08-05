@@ -1,9 +1,6 @@
 #include "pch.h"
-#include "App.h"
 
-#include "Athena/Log.h"
-#define GLW_INCLUDE_VULKAN
-#include <GLFW/glfw3.h>
+#include "App.h"
 
 namespace Athena
 {
@@ -14,11 +11,13 @@ namespace Athena
 		CreateVulkanInstance();
 		ATH_ENGINE_INFO("Created Vulkan instance!");
 		SelectVulkanDevice();
+		CreateVulkanLogcialDevice();
 	}
 
 	Athena::App::~App()
 	{
 		vkDestroyInstance(m_vulkanInstance, nullptr);
+		vkDestroyDevice(m_vulkanLogicalDevice, nullptr);
 	}
 
 	void Athena::App::Run()
@@ -75,7 +74,7 @@ namespace Athena
 	}
 	bool App::SelectVulkanDevice()
 	{
-		m_vulkanDevice = VK_NULL_HANDLE;
+		m_vulkanPhysicalDevice = VK_NULL_HANDLE;
 		uint32_t vkDeviceCount = 0;
 		VkResult enumerateDevicesResult = vkEnumeratePhysicalDevices(m_vulkanInstance, &vkDeviceCount, nullptr);
 		ATH_ENGINE_ASSERT(vkDeviceCount != 0, "Failed to find GPU with Vulkan support!");
@@ -87,16 +86,16 @@ namespace Athena
 		{
 			if (IsVulkanDeviceSuitable(device))
 			{
-				m_vulkanDevice = device;
+				m_vulkanPhysicalDevice = device;
 				break;
 			}
 		}
-		bool gpuSuitable = m_vulkanDevice != VK_NULL_HANDLE;
+		bool gpuSuitable = m_vulkanPhysicalDevice != VK_NULL_HANDLE;
 		ATH_ENGINE_ASSERT(gpuSuitable, "Failed to find a suitable GPU!");
 		if (gpuSuitable == false) return false;
 
-		vkGetPhysicalDeviceProperties(m_vulkanDevice, &m_vulkanDeviceProperties);
-		ATH_ENGINE_INFO("Selected GPU '{0}'", m_vulkanDeviceProperties.deviceName);
+		vkGetPhysicalDeviceProperties(m_vulkanPhysicalDevice, &m_vulkanPhysicalDeviceProperties);
+		ATH_ENGINE_INFO("Selected GPU '{0}'", m_vulkanPhysicalDeviceProperties.deviceName);
 
 		return true;
 	}
@@ -109,6 +108,13 @@ namespace Athena
 		vkGetPhysicalDeviceProperties(device, &deviceProperties);
 		vkGetPhysicalDeviceFeatures(device, &deviceFeatures);
 		std::string deviceName = deviceProperties.deviceName;
+
+		QueueFamilyIndices indices = FindQueueFamilies(device);
+		if (indices.graphicsFamily.has_value() == false)
+		{
+			ATH_ENGINE_WARN("GPU device '{0}' has no graphics family!", deviceName);
+			return false;
+		}
 
 		bool isDiscreteGpu = deviceProperties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU;
 		if (isDiscreteGpu == false)
@@ -127,5 +133,71 @@ namespace Athena
 		ATH_ENGINE_INFO("GPU device '{0}' is suitable!", deviceName);
 
 		return true;
+	}
+	bool App::CreateVulkanLogcialDevice()
+	{
+		QueueFamilyIndices indices = FindQueueFamilies(m_vulkanPhysicalDevice);
+		VkDeviceQueueCreateInfo createQueueInfo{};
+		createQueueInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+		createQueueInfo.queueFamilyIndex = indices.graphicsFamily.value();
+		createQueueInfo.queueCount = 1;
+		float queuePriority = 1.0f;
+		createQueueInfo.pQueuePriorities = &queuePriority;
+
+		VkPhysicalDeviceFeatures physicalDeviceFeatures;
+
+		VkDeviceCreateInfo createDeviceInfo{};
+		createDeviceInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+		createDeviceInfo.pQueueCreateInfos = &createQueueInfo;
+		createDeviceInfo.queueCreateInfoCount = 1;
+		createDeviceInfo.pEnabledFeatures = &physicalDeviceFeatures;
+		createDeviceInfo.enabledExtensionCount = 0;
+
+		const std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
+		bool enableValidationLayers = true;
+
+		if (enableValidationLayers)
+		{
+			createDeviceInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
+			createDeviceInfo.ppEnabledLayerNames = validationLayers.data();
+		}
+		else
+		{
+			createDeviceInfo.enabledLayerCount = 0;
+		}
+
+		VkResult createLogicalDeviceResult = vkCreateDevice(m_vulkanPhysicalDevice, &createDeviceInfo, nullptr, &m_vulkanLogicalDevice);
+		ATH_ENGINE_ASSERT(createLogicalDeviceResult == VK_SUCCESS, "Failed to create logical device!");
+		if (createLogicalDeviceResult != VK_SUCCESS) return false;
+
+		return true;
+	}
+	QueueFamilyIndices App::FindQueueFamilies(VkPhysicalDevice device)
+	{
+		QueueFamilyIndices indices;
+
+		uint32_t queueFamilyCount = 0;
+		vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, nullptr);
+		std::vector<VkQueueFamilyProperties> queueFamilies(queueFamilyCount);
+		vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, queueFamilies.data());
+
+		int i = 0;
+		for (const auto& queueFamily : queueFamilies)
+		{
+			if (queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT)
+			{
+				indices.graphicsFamily = 1;
+			}
+
+
+			if (indices.IsComplete())
+			{
+				break;
+			}
+
+			i++;
+		}
+
+		return indices;
 	}
 }

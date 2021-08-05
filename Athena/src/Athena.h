@@ -1,6 +1,6 @@
 #pragma once
 
-//	USED BY APPLICATIONS
+//	USED ONLY BY APPLICATIONS
 
 #include <Athena/App.h>
 #include <Athena/Log.h>

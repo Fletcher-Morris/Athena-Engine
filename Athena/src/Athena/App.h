@@ -3,7 +3,7 @@
 #include "AthenaCore.h"
 #include "Window.h"
 
-#include <vulkan/vulkan.h>
+#include "Athena/Graphics/Backend.h"
 
 namespace Athena
 {
@@ -20,10 +20,13 @@ namespace Athena
 		//	VULKAN
 		VkInstance m_vulkanInstance;
 		bool CreateVulkanInstance();
-		VkPhysicalDevice m_vulkanDevice;
-		VkPhysicalDeviceProperties m_vulkanDeviceProperties;
+		VkPhysicalDevice m_vulkanPhysicalDevice;
+		VkPhysicalDeviceProperties m_vulkanPhysicalDeviceProperties;
+		VkDevice m_vulkanLogicalDevice;
 		bool SelectVulkanDevice();
 		bool IsVulkanDeviceSuitable(VkPhysicalDevice device);
+		bool CreateVulkanLogcialDevice();
+		QueueFamilyIndices FindQueueFamilies(VkPhysicalDevice device);
 	};
 
 	App* CreateApp();

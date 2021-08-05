@@ -4,6 +4,9 @@
     <Filter Include="Athena">
       <UniqueIdentifier>{B633ECA7-A2D5-167E-8B90-2AD277D19DCE}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Athena\Graphics">
+      <UniqueIdentifier>{B688CC66-2214-3A2B-2B25-BD1F972F962B}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
     </Filter>
@@ -21,6 +24,9 @@
     </ClInclude>
     <ClInclude Include="src\Athena\AthenaEntry.h">
       <Filter>Athena</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Athena\Graphics\Backend.h">
+      <Filter>Athena\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="src\Athena\Log.h">
       <Filter>Athena</Filter>

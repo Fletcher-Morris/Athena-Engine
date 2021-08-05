@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Athena/Window.h>
-#define GLW_INCLUDE_VULKAN
+#define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
 namespace Athena
