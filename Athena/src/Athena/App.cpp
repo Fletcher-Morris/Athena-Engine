@@ -145,6 +145,7 @@ namespace Athena
 		createQueueInfo.pQueuePriorities = &queuePriority;
 
 		VkPhysicalDeviceFeatures physicalDeviceFeatures;
+		vkGetPhysicalDeviceFeatures(m_vulkanPhysicalDevice, &physicalDeviceFeatures);
 
 		VkDeviceCreateInfo createDeviceInfo{};
 		createDeviceInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
