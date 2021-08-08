@@ -50,5 +50,6 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\pch.cpp" />
+    <ClCompile Include="src\Athena\Graphics\Backend.cpp" />
   </ItemGroup>
 </Project>

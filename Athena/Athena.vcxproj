@@ -119,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Athena\App.cpp" />
+    <ClCompile Include="src\Athena\Graphics\Backend.cpp" />
     <ClCompile Include="src\Athena\Log.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\pch.cpp">
