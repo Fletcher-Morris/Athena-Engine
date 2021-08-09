@@ -43,6 +43,9 @@
     <ClCompile Include="src\Athena\App.cpp">
       <Filter>Athena</Filter>
     </ClCompile>
+    <ClCompile Include="src\Athena\Graphics\Backend.cpp">
+      <Filter>Athena\Graphics</Filter>
+    </ClCompile>
     <ClCompile Include="src\Athena\Log.cpp">
       <Filter>Athena</Filter>
     </ClCompile>
@@ -50,6 +53,5 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\pch.cpp" />
-    <ClCompile Include="src\Athena\Graphics\Backend.cpp" />
   </ItemGroup>
 </Project>

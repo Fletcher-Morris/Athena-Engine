@@ -12,6 +12,7 @@ OutputDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.archetecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "vendor/GLFW"
 IncludeDir["vulkan"] = "$(VULKAN_SDK)"
+IncludeDir["entt"] = "vendor/entt/single_include/entt"
 
 include "vendor/GLFW"
 
@@ -38,7 +39,8 @@ project "Athena"
 		"Athena/src",
 		"vendor/spdlog/include",
 		"%{IncludeDir.GLFW}/include",
-		"%{IncludeDir.vulkan}/Include"
+		"%{IncludeDir.vulkan}/Include",
+		"%{IncludeDir.entt}"
 	}
 
 	libdirs
@@ -107,7 +109,8 @@ project "Forge"
 		"Athena/src",
 		"vendor/spdlog/include",
 		"%{IncludeDir.GLFW}/include",
-		"%{IncludeDir.vulkan}/Include"
+		"%{IncludeDir.vulkan}/Include",
+		"%{IncludeDir.entt}"
 	}
 
 	links
